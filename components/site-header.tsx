@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { ThemeSwitcher } from "./theme-switcher";
 
 export function SiteHeader() {
   return (
@@ -12,6 +13,11 @@ export function SiteHeader() {
         />
         <h1 className="font-medium text-base">Documents</h1>
       </div>
+      <Separator
+        orientation="vertical"
+        className="data-vertical:self-auto mx-2 h-4"
+      />
+      <ThemeSwitcher />
     </header>
   );
 }
