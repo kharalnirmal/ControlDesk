@@ -1,10 +1,18 @@
+import { EmptyState } from "@/components/states/empty-state";
+import { FeaturePlaceholder } from "@/components/states/feature-placeholder";
+
 export default function CategoriesPage() {
   return (
     <section>
-      <h1 className="font-semibold text-2xl">Categories</h1>
-      <p className="text-muted-foreground">
-        Categories management will be implemented in M3.
-      </p>
+      <FeaturePlaceholder
+        title="Category Management"
+        description="Category management will be implemented in M3."
+      />
+
+      <EmptyState
+        title="Empty Product"
+        description="Will add later bt not now "
+      />
     </section>
   );
 }
