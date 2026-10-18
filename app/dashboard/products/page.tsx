@@ -1,10 +1,12 @@
+import { FeaturePlaceholder } from "@/components/states/feature-placeholder";
+
 export default function ProductsPage() {
   return (
     <section>
-      <h1 className="font-semibold text-2xl">Products</h1>
-      <p className="text-muted-foreground">
-        Product management will be implemented in M3.
-      </p>
+      <FeaturePlaceholder
+        title="Project Management"
+        description="Project management will be implemented in M3."
+      />
     </section>
   );
 }
