@@ -1,6 +1,8 @@
 import { FeaturePlaceholder } from "@/components/states/feature-placeholder";
+import { requireAdmin } from "@/lib/require-admin";
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  await requireAdmin();
   return (
     <section>
       <FeaturePlaceholder
