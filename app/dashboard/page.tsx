@@ -3,8 +3,10 @@ import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
 
 import data from "./data.json";
+import { requireAdmin } from "@/lib/require-admin";
 
-export default function Page() {
+export default async function Page() {
+  await requireAdmin();
   return (
     <div className="flex flex-col flex-1">
       <div className="@container/main flex flex-col flex-1 gap-2">

@@ -1,7 +1,9 @@
 import { EmptyState } from "@/components/states/empty-state";
 import { FeaturePlaceholder } from "@/components/states/feature-placeholder";
+import { requireAdmin } from "@/lib/require-admin";
 
-export default function CategoriesPage() {
+export default async function CategoriesPage() {
+  await requireAdmin();
   return (
     <section>
       <FeaturePlaceholder
