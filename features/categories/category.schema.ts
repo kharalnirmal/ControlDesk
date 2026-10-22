@@ -16,6 +16,12 @@ export const createCategorySchema = z.object({
     ),
 });
 
+export const renameCategorySchema = createCategorySchema.extend({
+  id: z.string().trim().min(1).max(100),
+});
+
+export const categoryIdSchema = z.string().trim().min(1).max(100);
+
 export type CreateCategoryInput = z.infer<typeof createCategorySchema>;
 
 //z.object() describes the expected object. z.string() requires a string. .transform() normalizes it. .pipe() validates the normalized result.

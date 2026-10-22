@@ -21,7 +21,7 @@ export function SignOutButton() {
       }
       router.replace("/sign-in");
       router.refresh();
-    } catch (error) {
+    } catch {
       setError("Unable to sign out. Please try again.");
     } finally {
       setPending(false);

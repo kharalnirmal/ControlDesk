@@ -2,8 +2,14 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
+import { requireAdmin } from "@/lib/require-admin";
 
-export default function Layout({ children }: { children: ReactNode }) {
+// Admin session validation is intentionally request-time. M4 can stream a
+// static shell around this boundary; M3 keeps the protected subtree blocking.
+export const instant = false;
+
+export default async function Layout({ children }: { children: ReactNode }) {
+  await requireAdmin();
   return (
     <SidebarProvider
       style={

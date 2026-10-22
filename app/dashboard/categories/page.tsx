@@ -3,6 +3,9 @@ import { EmptyState } from "@/components/states/empty-state";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/require-admin";
 import Link from "next/link";
+import { CategoryActions } from "@/components/categories/category-actions";
+
+export const instant = false;
 
 const PAGE_SIZE = 20;
 type CategoriesPageProps = {
@@ -83,6 +86,9 @@ export default async function CategoriesPage({
                     <th scope="col" className="p-3 font-medium text-right">
                       Products
                     </th>
+                    <th scope="col" className="p-3 font-medium text-right">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
 
@@ -93,6 +99,13 @@ export default async function CategoriesPage({
 
                       <td className="p-3 text-right">
                         {category._count.products}
+                      </td>
+                      <td className="p-3">
+                        <CategoryActions
+                          id={category.id}
+                          name={category.name}
+                          productCount={category._count.products}
+                        />
                       </td>
                     </tr>
                   ))}

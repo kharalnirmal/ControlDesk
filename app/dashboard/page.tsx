@@ -5,6 +5,8 @@ import { SectionCards } from "@/components/section-cards";
 import data from "./data.json";
 import { requireAdmin } from "@/lib/require-admin";
 
+export const instant = false;
+
 export default async function Page() {
   await requireAdmin();
   return (
