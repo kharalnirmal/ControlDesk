@@ -1,9 +1,12 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
-  <div role="status" aria-label="Loading Dashboard">
-    <Skeleton className="mb-6 w-48 h-8" />
-    <Skeleton className="w-full h-40" />
-    <span className="sr-only">Loading dashboard content...</span>
-  </div>;
+  return (
+    <div role="status" aria-label="Loading dashboard" className="space-y-6 p-4 md:p-6">
+      <Skeleton className="h-8 w-48" />
+      <Skeleton className="h-24 w-full" />
+      <Skeleton className="h-64 w-full" />
+      <span className="sr-only">Loading dashboard content...</span>
+    </div>
+  );
 }

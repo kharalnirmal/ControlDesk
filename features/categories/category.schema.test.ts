@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { createCategorySchema, normalizeCategoryName } from "./category.schema";
+import {
+  createCategorySchema,
+  normalizeCategoryName,
+  renameCategorySchema,
+} from "./category.schema";
 
 describe("Category validation", () => {
   // 1. Test our normalization function
@@ -66,5 +70,18 @@ describe("Category validation", () => {
     const second = normalizeCategoryName(" electronics ");
 
     expect(first).toBe(second);
+  });
+
+  it("accepts the minimum normalized boundary", () => {
+    expect(createCategorySchema.safeParse({ name: " AB " }).success).toBe(true);
+  });
+
+  it("applies canonical validation when renaming", () => {
+    const result = renameCategorySchema.safeParse({
+      id: "category-1",
+      name: "  HOME   OFFICE ",
+    });
+    expect(result.success).toBe(true);
+    if (result.success) expect(result.data.name).toBe("home office");
   });
 });
