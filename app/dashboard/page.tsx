@@ -1,25 +1,29 @@
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
+import { DashboardCharts } from "@/components/dashboard-chart";
 
-import data from "./data.json";
-import { requireAdmin } from "@/lib/require-admin";
+import { getDashboardAnalytics } from "@/features/analytics/get-dashboared-analytics";
 
 export const instant = false;
 
-export default async function Page() {
-  await requireAdmin();
+export default async function DashboardPage() {
+  const analytics = await getDashboardAnalytics();
+
   return (
-    <div className="flex flex-col flex-1">
-      <div className="@container/main flex flex-col flex-1 gap-2">
-        <div className="flex flex-col gap-4 md:gap-6 py-4 md:py-6">
-          <SectionCards />
-          <div className="px-4 lg:px-6">
-            <ChartAreaInteractive />
-          </div>
-          <DataTable data={data} />
-        </div>
+    <main className="flex flex-col flex-1 gap-6 py-4 md:py-6">
+      <div className="px-4 lg:px-6">
+        <h1 className="font-semibold text-2xl">Dashboard Overview</h1>
+
+        <p className="text-muted-foreground text-sm">
+          Live catalog and inventory analytics.
+        </p>
       </div>
-    </div>
+
+      <SectionCards metrics={analytics.metrics} />
+
+      <DashboardCharts
+        productsByCategory={analytics.productsByCategory}
+        productsByStockStatus={analytics.productsByStockStatus}
+      />
+    </main>
   );
 }
