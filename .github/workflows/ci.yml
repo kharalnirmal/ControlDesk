@@ -1,0 +1,50 @@
+name: ControlDesk CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Code Quality and Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      DATABASE_URL: "postgresql://ci:ci@127.0.0.1:5432/controldesk_ci"
+      BETTER_AUTH_SECRET: "ci-placeholder-not-for-real-authentication"
+      BETTER_AUTH_URL: "http://localhost:3000"
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate --config ./prisma7.config.ts
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check TypeScript
+        run: npm run typecheck
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Build application
+        run: npm run build
