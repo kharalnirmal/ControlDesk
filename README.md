@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ControlDesk
 
-## Getting Started
+ControlDesk is a responsive e-commerce administration dashboard for managing a
+small business's products, categories, stock, and catalog analytics. It is built
+as a full-stack Next.js application with PostgreSQL, Prisma, Better Auth, and
+TypeScript.
 
-First, run the development server:
+## Demo login
+
+- **Email:** `nirmal@gmail.com`
+- **Password:** `nirmal123`
+
+> These credentials are for development/demo use only. Do not reuse them in a
+> production environment.
+
+## Project status
+
+**Approximately 75% complete.**
+
+### Completed
+
+- Responsive dashboard with light and dark themes
+- Email/password authentication and protected admin pages
+- Category creation, listing, renaming, and restricted deletion
+- Product creation, listing, viewing, editing, archiving, and restoring
+- Product search, filtering, sorting, and pagination
+- Live product, category, and inventory analytics
+- Server-side validation and admin authorization
+- Unit tests, linting, type checking, production build, and GitHub CI workflow
+
+### Remaining
+
+- Apply and verify the latest database hardening migration
+- Add isolated database integration tests
+- Add authenticated browser/E2E smoke tests
+- Complete deployment and production smoke testing
+- Finish release documentation and tag the first release
+
+## Technology
+
+- Next.js 16 and React 19
+- TypeScript and Tailwind CSS
+- shadcn/ui
+- PostgreSQL and Prisma ORM
+- Better Auth
+- Vitest
+
+## Run locally
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Create a `.env` file:
+
+   ```env
+   DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DATABASE"
+   BETTER_AUTH_SECRET="replace-with-a-secure-random-secret"
+   BETTER_AUTH_URL="http://localhost:3000"
+   ```
+
+3. Generate Prisma Client and apply approved migrations:
+
+   ```bash
+   npx prisma generate --config ./prisma7.config.ts
+   npx prisma migrate deploy --config ./prisma7.config.ts
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000).
+
+## Quality checks
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run typecheck
+npm run test
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+More detailed requirements, implementation notes, and progress records are in
+the [`docs`](./docs) directory.
