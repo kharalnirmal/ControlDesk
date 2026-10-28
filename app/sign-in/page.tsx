@@ -19,7 +19,17 @@ export default function SignInPage() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="space-y-5">
+          <div className="rounded-lg border bg-muted/50 p-4 text-sm">
+            <p className="mb-2 font-medium">Demo login details</p>
+            <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-muted-foreground">
+              <dt>Email:</dt>
+              <dd className="font-mono text-foreground">nirmal@gmail.com</dd>
+              <dt>Password:</dt>
+              <dd className="font-mono text-foreground">nirmal123</dd>
+            </dl>
+          </div>
+
           <SignInForm />
         </CardContent>
       </Card>
